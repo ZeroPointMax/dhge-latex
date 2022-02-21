@@ -40,7 +40,7 @@ Vielmehr ist dieses Repository ein Fork davon und richtet sich vor allem an klei
 
 Falls ein Template für Projektarbeiten an der DHGE gesucht ist, bitte unbedingt bei [dhge-latex](https://github.com/RvNovae/dhge-latex) vorbeischauen, es ist sehr gut! :^)
 
-An der Stelle möchte ich mich bei Oliver und Felix bedanken, die die eigentliche Leistung für das Original-Template erbraucht haben.
+An der Stelle möchte ich mich bei Oliver und Felix bedanken, die die eigentliche Leistung für das Original-Template erbracht haben.
 
 Denn während dhge-latex sehr gut für Projektarbeiten ist, kommt es mir oft so vor, dass es *zu overkill* ist und ich oft das halbe Template auseinandernehme und Sachen rauslösche.
 
