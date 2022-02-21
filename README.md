@@ -1,9 +1,10 @@
-# DHGE-LaTeX [![Build Status](https://github.com/RvNovae/dhge-latex/actions/workflows/ci-dhge-latex.yaml/badge.svg)](https://github.com/RvNovae/dhge-latex/actions/workflows/ci-dhge-latex.yaml) <!-- omit in toc -->
+# DHGE-LaTeX <!-- omit in toc -->
 
-Inoffizielles LaTeX-Template für Projektarbeiten für Technik-Studiengänge an der Dualen Hochschule Gera Eisenach
+Inoffizielles LaTeX-Template für kleinere Arbeiten für Technik-Studiengänge an der Dualen Hochschule Gera Eisenach
 
 # Inhaltsverzeichnis <!-- omit in toc -->
 
+- [Unterschiede zu dhge-latex](#unterschiede-zu-dhge-latex)
 - [Installation](#installation)
   - [LaTeX Installation](#latex-installation)
     - [Perl](#perl)
@@ -26,17 +27,33 @@ Inoffizielles LaTeX-Template für Projektarbeiten für Technik-Studiengänge an 
 - [Abbildungen](#abbildungen)
   - [LaTeX Abbildungen](#latex-abbildungen)
   - [dhge-latex Abbildungen](#dhge-latex-abbildungen)
-- [Abkürzungen](#abkürzungen)
-- [Anlagenverzeichnis](#anlagenverzeichnis)
-  - [Verwendung](#verwendung)
+    - [Longfigure](#longfigure)
 - [Code mit Minted einfügen](#code-mit-minted-einfügen)
-- [Spezielle Abschnitte](#spezielle-abschnitte)
-  - [SubSubSubSection](#subsubsubsection)
 - [Unicode Alphabete](#unicode-alphabete)
-- [Kusche Mode](#kusche-mode)
-  - [Probleme im Kusche Mode](#probleme-im-kusche-mode)
 - [Abstract](#abstract)
 - [Absatztrenner](#absatztrenner)
+
+# Unterschiede zu dhge-latex
+
+Das hier ist **nicht** [dhge-latex](https://github.com/RvNovae/dhge-latex) für Projektarbeiten.
+Vielmehr ist dieses Repository ein Fork davon und richtet sich vor allem an kleinere Ausarbeitungen.
+
+Falls ein Template für Projektarbeiten an der DHGE gesucht ist, bitte unbedingt bei [dhge-latex](https://github.com/RvNovae/dhge-latex) vorbeischauen, es ist sehr gut! :^)
+
+An der Stelle möchte ich mich bei Oliver und Felix bedanken, die die eigentliche Leistung für das Original-Template erbraucht haben.
+
+Denn während dhge-latex sehr gut für Projektarbeiten ist, kommt es mir oft so vor, dass es *zu overkill* ist und ich oft das halbe Template auseinandernehme und Sachen rauslösche.
+
+Im Wesentlichen habe ich deshalb folgende Sachen geändert:
+
+- Präambel entfernt
+  - Änderungen am Template sind oft Reihenfolgen-sensibel. Es ist also sinnvoll, inline zu modden
+- Custom Markbox entfernt
+- BaFormat entfernt
+- Fonts sind immer fancy. Deal with it.
+- Sperrvermerk entfernt: für Mini-Ausarbeitungen nicht anwendbar
+- Einkürzungen im Deckblatt
+- Kusche-Mode gemergt: Für die meisten Dinge ist der Kusche-Mode permanent aktiv
 
 # Installation
 
@@ -148,9 +165,6 @@ Ein Codeblock, welcher bestimmte Abläufe vor und nach dem eigenen Code laufen l
 > Die Standardfonts sind zwar ganz in Ordnung, aber ich finde, das geht schöner :^)
 
 Die vorgestellte Font-Konfiguration basiert auf [diesem Stackoverflow Thread](https://tex.stackexchange.com/a/114166), wo auch eine Vorschau betrachtet werden kann.
-**Die Fonts sind standardmäßig im Template aktiv.**
-
-Wer diese Fonts **nicht** verwenden möchte, kann in ``config.tex`` ``CFANCYFONTS`` auf ``0`` setzen, um den LaTex-Standard wiederherzustellen.
 
 # Zitate und Literaturverzeichnis
 
@@ -184,7 +198,6 @@ Beispiel:
 
 ***
 
-<!-- todo: is this still a thing? the vscode extension does this pretty well without crying -->
 **Bei jeder Änderung in `literatur.bib` müssen folgende Schritte durchgeführt werden:**
 
 1. Das Projekt kompilieren (`pdflatex.exe -synctex=1 -interaction=nonstopmode "template".tex`)
@@ -283,15 +296,6 @@ Beispiel:
 ***
 
 Der `dhgefigure` Befehl wird nun auch als Snippet für Visual-Studio-Code mitgeliefert.
-
-# Abkürzungen
-
-```latex
-\DeclareAcronym{1}{
-  short = {2},
-  long = {3}
-  }
-```
 
 1. ID der Abkürzung, damit wird im Fließtext später referenziert.
 2. Die Abkürzung selbst
@@ -400,32 +404,7 @@ Für das Erstellen von Abkürzungen wird nun auch ein Snippet für Visual-Studio
 
 Für mehr Informationen kann die [Acro Package Documentation](https://mirror.physik.tu-berlin.de/pub/CTAN/macros/latex/contrib/acro/acro-manual.pdf) gelesen werden.
 
-# Anlagenverzeichnis
-
-> wird automatisch generiert
-
-## Verwendung
-
-- Anlagen werden in der anlagen.tex hinterlegt.
-  - hierbei ist zu beachten:
-    - die Anlage muss sich in einer Umgebung vom Typ `figure`, `table` oder `longfigure` befinden
-    - die Anlage benötigt eine Beschriftung `\caption{}`
-  - ein Label ist für eine automatische Verknüpfung im Anlagenverzeichnis nicht nötig
-  - der vorgefertigte Befehl `\dhgefigure`, kann verwendet werden, da dieser beide Anforderungen erfüllt
-  - siehe Beispiel `build/tests/anlagen.tex`
-
-Beispiel:
-
-```latex
-\begin{table}
-    \caption{TestBeschriftung}
-    \begin{tabular}{c | c}
-        1 & 1 \\
-    \end{tabular}
-\end{table}
-```
-
-### Longfigure
+# Longfigure
 
 Damit auch nicht-Floats in den Anlagen möglich sind, gibt es die `longfigure`-Environment.
 Diese verhält sich im Grunde wie `figure`. Der Inhalt darf jedoch über Seitengrenzen hinweg gehen.
@@ -448,24 +427,6 @@ Das ist besonders für Code-Beispiele für den Anhang praktisch.
 
 Bei Proxy-Problemen mit pip, kann auch das `Pygments.whl` file runtergeladen und dann mit pip installiert werden.
 [Pygments Download](https://pypi.org/project/Pygments/#files)
-
-# Spezielle Abschnitte
-
-## SubSubSubSection
-
-Falls man einen Abschnitt 4. Stufe schreiben möchte, kann das mit
-
-```latex
-\dhgeparagraph{}
-```
-
-umgesetzt werden.
-
-Beispiel:
-
-```latex
-\dhgeparagraph{This is a SubSubSubSection}
-```
 
 # Unicode Alphabete
 
